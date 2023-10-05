@@ -1,16 +1,16 @@
 package br.com.contaazul.challengerobot.model;
 
-import java.util.List;
+import org.springframework.stereotype.Component;
 
-public class Robot implements CommandableMachine<MoveRightRobotCommand,RobotResponse> {
+import br.com.contaazul.challengerobot.model.command.CommandableRobot;
+import br.com.contaazul.challengerobot.model.command.RobotCommand;
 
-	@Override
-	public RobotResponse executeCommand(List<MoveRightRobotCommand> commands) {
+@Component
+public class Robot implements CommandableRobot<RobotCommand> {
 
-		
-		
-		return null;
-	}
+	
+	
+	
 
 	
 }
