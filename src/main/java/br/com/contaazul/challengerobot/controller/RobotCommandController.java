@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.contaazul.challengerobot.model.Robot;
 import br.com.contaazul.challengerobot.model.RobotResponse;
 import br.com.contaazul.challengerobot.model.command.CommandConverter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @RestController
 @RequestMapping(value = "/rest")
@@ -27,7 +29,7 @@ public class RobotCommandController {
 	
 	
 	@GetMapping("/mars/{commands}") 
-	public ResponseEntity<RobotResponse> moveRobot(@PathVariable String robotCommands) {
+	public ResponseEntity<RobotResponse> moveRobot(@PathVariable @NotBlank @Pattern(regexp = "([N|n|S|s|W|w|E|e|M|m])\\w+", message = "Comandos só devem conter os caracteres N,n,S,s,W,w,E,e,M,m") String robotCommands) {
 		RobotResponse response = RobotResponse.fromPosition(robot.executeCommand(UUID.randomUUID(), commandConverter.convertToCommandList(robotCommands)));
 		return ResponseEntity.ok(response);
 	}

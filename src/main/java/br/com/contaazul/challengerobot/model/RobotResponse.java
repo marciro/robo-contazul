@@ -12,17 +12,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class RobotResponse {
     
-	@NotNull(message = "{validation.age.NotNull}")
-	@Positive(message = "{validation.age.Positive}")
-    @Max(value = 18, message = "{validation.age.Maximum}")
 	private Byte axisXPos; 
-	
-    @NotNull(message = "{validation.age.NotNull}")
-    @Positive(message = "{validation.age.Positive}")
-    @Max(value = 18, message = "{validation.age.Maximum}")
 	private Byte axisYPos;
-	
-    
 	private UUID robotIdentifier;
 	
 	
