@@ -26,10 +26,8 @@ public class RobotCommandController {
 	@Autowired
 	private Robot robot;
 
-	
-	
 	@GetMapping("/mars/{commands}") 
-	public ResponseEntity<RobotResponse> moveRobot(@PathVariable @NotBlank @Pattern(regexp = "([N|n|S|s|W|w|E|e|M|m])\\w+", message = "Comandos só devem conter os caracteres N,n,S,s,W,w,E,e,M,m") String robotCommands) {
+	public ResponseEntity<RobotResponse> moveRobot(@PathVariable("commands") @NotBlank @Pattern(regexp = "([N|n|S|s|W|w|E|e|M|m])\\w+", message = "Comandos só devem conter os caracteres N,n,S,s,W,w,E,e,M,m") String robotCommands) {
 		RobotResponse response = RobotResponse.fromPosition(robot.executeCommand(UUID.randomUUID(), commandConverter.convertToCommandList(robotCommands)));
 		return ResponseEntity.ok(response);
 	}

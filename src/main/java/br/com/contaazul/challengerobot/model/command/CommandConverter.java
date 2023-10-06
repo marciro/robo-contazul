@@ -1,34 +1,45 @@
 package br.com.contaazul.challengerobot.model.command;
 
-import static org.apache.commons.lang.StringUtils.split;
 import static org.apache.commons.lang.StringUtils.upperCase;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class CommandConverter {
 
+	private static final char TURN_RIGHT = 'R';
+	private static final char TURN_LEFT = 'L';
+	private static final char MOVE_FORWARD = 'M';
+
 	public List<RobotCommand> convertToCommandList(String rawCommandList) {
-		String[] splitteredCommands = split(upperCase(rawCommandList));
-		return Stream.of(splitteredCommands).map(this::convertToRobotCommand).collect(Collectors.toList());
+		List<Character> splitteredCommands = convertStringToCharList(upperCase(rawCommandList));
+		return splitteredCommands.stream().map(this::convertToRobotCommand).collect(Collectors.toList());
 	}
 
-	private RobotCommand convertToRobotCommand(String strCommand) {
+	private List<Character> convertStringToCharList(String str) {
+
+		List<Character> chars = new ArrayList<>();
+		for (char ch : str.toCharArray()) {
+			chars.add(ch);
+		}
+		return chars;
+	}
+
+	private RobotCommand convertToRobotCommand(Character strCommand) {
 
 		switch (strCommand) {
-		case "M":
+		case MOVE_FORWARD:
 			return new MoveForwardCommand();
-		case "L":
+		case TURN_LEFT:
 			return new TurnLeftRobotCommand();
-		case "R":
+		case TURN_RIGHT:
 			return new TurnRightRobotCommand();
-
 		default:
-			throw new IllegalArgumentException("Unexpected value: " + strCommand);
+			throw new IllegalArgumentException("Comando inexistente: " + strCommand);
 		}
 	}
 }

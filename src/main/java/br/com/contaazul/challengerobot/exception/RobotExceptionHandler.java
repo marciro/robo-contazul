@@ -1,5 +1,8 @@
 package br.com.contaazul.challengerobot.exception;
 
+import java.util.Arrays;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,17 +13,15 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class RobotExceptionHandler {
 
-	
-	
-	@ExceptionHandler(value = { IllegalArgumentException.class, IllegalStateException.class })
+	@ExceptionHandler(value = { Exception.class })
 	protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
-		String bodyOfResponse = "This should be application specific";
-		return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT, request);
+		String bodyOfResponse = "Erro ao processar requisição";
+		return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
 	private ResponseEntity<Object> handleExceptionInternal(RuntimeException ex, String bodyOfResponse,
-			HttpHeaders httpHeaders, HttpStatus conflict, WebRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+			HttpHeaders httpHeaders, HttpStatus status, WebRequest request) {
+		String join = StringUtils.join(Arrays.asList(bodyOfResponse,ex.getMessage()),":");
+		return new ResponseEntity<Object>(join, status); 
 	}
 }
