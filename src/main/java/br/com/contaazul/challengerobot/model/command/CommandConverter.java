@@ -7,13 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
+import static br.com.contaazul.challengerobot.ChallengeRobotConstants.*;
 
 @Component
 public class CommandConverter {
 
-	private static final char TURN_RIGHT = 'R';
-	private static final char TURN_LEFT = 'L';
-	private static final char MOVE_FORWARD = 'M';
+
 
 	public List<RobotCommand> convertToCommandList(String rawCommandList) {
 		List<Character> splitteredCommands = convertStringToCharList(upperCase(rawCommandList));

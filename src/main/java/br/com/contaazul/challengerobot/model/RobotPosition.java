@@ -24,9 +24,26 @@ public class RobotPosition {
 	private Byte axisYPos;
     
     @NotNull(message = "{validation.direction.NotNull}")
-    @Pattern(regexp = "([N|n|S|s|W|w|E|e|M|m])\\w+", message = "Comandos só devem conter os caracteres N,n,S,s,W,w,E,e,M,m")
-    private char direction;
+    @Pattern(regexp = "([N|n|S|s|W|w|E|e])\\w+", message = "Comandos só devem conter os caracteres N,n,S,s,W,w,E,e")
+    private String direction;
     
 	private UUID robotIdentifier;
+	
+	
+	public void addAxisXPos(byte step) {
+		setAxisXPos(Byte.valueOf((byte)(getAxisXPos()+step)) ) ;
+	}
+	
+	public void subtractAxisXPos(byte step) {
+		setAxisXPos(Byte.valueOf((byte)(getAxisXPos()-step))) ;
+	}
+
+	public void subtractAxisYPos(byte step) {
+		setAxisYPos(Byte.valueOf((byte)(getAxisYPos()-step)) ) ;
+		
+	}
+	public void addAxisYPos(byte step) {
+		setAxisYPos(Byte.valueOf((byte)(getAxisYPos()+step))) ;
+	}
 
 }

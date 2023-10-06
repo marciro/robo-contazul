@@ -14,11 +14,12 @@ public class RobotResponse {
     
 	private Byte axisXPos; 
 	private Byte axisYPos;
+	private String direction;
 	private UUID robotIdentifier;
 	
 	
 	public static RobotResponse fromPosition(RobotPosition position){
-		return new RobotResponse(position.getAxisXPos(), position.getAxisXPos(), position.getRobotIdentifier());
+		return new RobotResponse(position.getAxisXPos(), position.getAxisYPos(),position.getDirection(),position.getRobotIdentifier());
 	}
 	
 }
