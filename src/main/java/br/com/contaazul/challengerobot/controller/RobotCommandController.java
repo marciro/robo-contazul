@@ -16,6 +16,9 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
+/**
+ * 
+ */
 @RestController
 @RequestMapping(value = "/rest")
 public class RobotCommandController {
@@ -32,4 +35,5 @@ public class RobotCommandController {
 		return ResponseEntity.ok(response);
 	}
 
+	
 }

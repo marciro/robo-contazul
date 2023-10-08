@@ -1,5 +1,6 @@
 package br.com.contaazul.challengerobot.model.command;
 
+import static br.com.contaazul.challengerobot.common.ChallengeRobotConstants.*;
 import static org.apache.commons.lang.StringUtils.upperCase;
 
 import java.util.ArrayList;
@@ -7,13 +8,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
-import static br.com.contaazul.challengerobot.ChallengeRobotConstants.*;
 
+/**
+ * Classe responsável por converter uma lista de comandos em String em sua implementação de comando.
+ */
 @Component
 public class CommandConverter {
 
 
 
+	public static final String COMANDO_INEXISTENTE = "Comando inexistente: ";
+
+	/**
+	 * Método conversor em uma lista de comandos em formato String para uma lista de comandos executáveis do robô
+	 * @param rawCommandList Lista de comandos em formato String
+	 * @return Lista de comandos executáveis do robô,
+	 */
 	public List<RobotCommand> convertToCommandList(String rawCommandList) {
 		List<Character> splitteredCommands = convertStringToCharList(upperCase(rawCommandList));
 		return splitteredCommands.stream().map(this::convertToRobotCommand).collect(Collectors.toList());
@@ -38,7 +48,7 @@ public class CommandConverter {
 		case TURN_RIGHT:
 			return new TurnRightRobotCommand();
 		default:
-			throw new IllegalArgumentException("Comando inexistente: " + strCommand);
+			throw new IllegalArgumentException(COMANDO_INEXISTENTE + strCommand);
 		}
 	}
 }

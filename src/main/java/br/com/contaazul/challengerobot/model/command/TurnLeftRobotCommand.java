@@ -1,16 +1,20 @@
 package br.com.contaazul.challengerobot.model.command;
 
-import static br.com.contaazul.challengerobot.ChallengeRobotConstants.EAST_DIRECTION;
-import static br.com.contaazul.challengerobot.ChallengeRobotConstants.NORTH_DIRECTION;
-import static br.com.contaazul.challengerobot.ChallengeRobotConstants.SOUTH_DIRECTION;
-import static br.com.contaazul.challengerobot.ChallengeRobotConstants.WEST_DIRECTION;
+import static br.com.contaazul.challengerobot.common.ChallengeRobotConstants.EAST_DIRECTION;
+import static br.com.contaazul.challengerobot.common.ChallengeRobotConstants.NORTH_DIRECTION;
+import static br.com.contaazul.challengerobot.common.ChallengeRobotConstants.SOUTH_DIRECTION;
+import static br.com.contaazul.challengerobot.common.ChallengeRobotConstants.WEST_DIRECTION;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import br.com.contaazul.challengerobot.common.ChallengeRobotMessages;
 import br.com.contaazul.challengerobot.model.RobotPosition;
 import jakarta.validation.Valid;
 
+/**
+ * Comando para execução do comando para virar 90 graus a esquerda
+ */
 @Validated
 @Component
 public class TurnLeftRobotCommand implements RobotCommand {
@@ -36,7 +40,7 @@ public class TurnLeftRobotCommand implements RobotCommand {
 		}
 
 		default:
-			throw new IllegalArgumentException("Unexpected value: " + currentState.getDirection());
+			throw new IllegalArgumentException(ChallengeRobotMessages.UNEXPECTED_VALUE + currentState.getDirection());
 		}
 
 	}
