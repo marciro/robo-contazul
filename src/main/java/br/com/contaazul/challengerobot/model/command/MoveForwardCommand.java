@@ -6,14 +6,17 @@ import static br.com.contaazul.challengerobot.ChallengeRobotConstants.ONE_STEP;
 import static br.com.contaazul.challengerobot.ChallengeRobotConstants.SOUTH_DIRECTION;
 import static br.com.contaazul.challengerobot.ChallengeRobotConstants.WEST_DIRECTION;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import br.com.contaazul.challengerobot.model.RobotPosition;
 import jakarta.validation.Valid;
 
 @Validated
+@Component
 public class MoveForwardCommand implements RobotCommand {
 
+	
 	@Override
 	public RobotPosition execute(@Valid RobotPosition currentState) {
 		
@@ -38,6 +41,8 @@ public class MoveForwardCommand implements RobotCommand {
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + currentState.getDirection());
 		}
+		
+		
 		
 	}
 

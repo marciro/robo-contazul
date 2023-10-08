@@ -13,15 +13,9 @@ import br.com.contaazul.challengerobot.model.RobotPosition;
 
 public interface CommandableRobot<C extends RobotCommand> {
 	
-
-
 	default RobotPosition executeCommand(UUID robotIdentifier,List<C> commands) throws RobotException {
 		
-		RobotPosition current = RobotPosition.builder().axisXPos(START_POSITION_X)
-													   .axisYPos(START_POSITION_Y)
-													   .direction(NORTH_DIRECTION)
-													   .robotIdentifier(robotIdentifier)
-													   .build();
+		RobotPosition current = new RobotPosition(START_POSITION_X,START_POSITION_Y,NORTH_DIRECTION,robotIdentifier);
 		
 		for (C command : commands) {
 			current = command.execute(current);
