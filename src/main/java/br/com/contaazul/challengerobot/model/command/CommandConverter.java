@@ -1,23 +1,25 @@
 package br.com.contaazul.challengerobot.model.command;
 
-import static br.com.contaazul.challengerobot.common.ChallengeRobotConstants.*;
+import static br.com.contaazul.challengerobot.common.ChallengeRobotConstants.MOVE_FORWARD;
+import static br.com.contaazul.challengerobot.common.ChallengeRobotConstants.TURN_LEFT;
+import static br.com.contaazul.challengerobot.common.ChallengeRobotConstants.TURN_RIGHT;
 import static org.apache.commons.lang.StringUtils.upperCase;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Classe responsável por converter uma lista de comandos em String em sua implementação de comando.
  */
 @Component
+@Slf4j
 public class CommandConverter {
 
-
-
-	public static final String COMANDO_INEXISTENTE = "Comando inexistente: ";
+	public static final String COMANDO_INEXISTENTE = "Comando inexistente: %s";
 
 	/**
 	 * Método conversor em uma lista de comandos em formato String para uma lista de comandos executáveis do robô
@@ -26,11 +28,10 @@ public class CommandConverter {
 	 */
 	public List<RobotCommand> convertToCommandList(String rawCommandList) {
 		List<Character> splitteredCommands = convertStringToCharList(upperCase(rawCommandList));
-		return splitteredCommands.stream().map(this::convertToRobotCommand).collect(Collectors.toList());
+		return splitteredCommands.stream().map(this::convertToRobotCommand).toList();
 	}
 
 	private List<Character> convertStringToCharList(String str) {
-
 		List<Character> chars = new ArrayList<>();
 		for (char ch : str.toCharArray()) {
 			chars.add(ch);
@@ -48,7 +49,8 @@ public class CommandConverter {
 		case TURN_RIGHT:
 			return new TurnRightRobotCommand();
 		default:
-			throw new IllegalArgumentException(COMANDO_INEXISTENTE + strCommand);
+			log.error("Comando {} enviado inexistente",strCommand);
+			throw new IllegalArgumentException(String.format(COMANDO_INEXISTENTE, strCommand));
 		}
 	}
 }

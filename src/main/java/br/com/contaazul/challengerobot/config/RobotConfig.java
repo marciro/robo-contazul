@@ -12,19 +12,17 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 public class RobotConfig {
 
-	
 	@Bean
-	   public MessageSource messageSource() {
-	      ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-	      messageSource.setBasename("classpath:messages");
-	      messageSource.setDefaultEncoding("UTF-8");
-	      return messageSource;
-	   }
-	
-		@Bean
-		public LocalValidatorFactoryBean validator() {
-			return new LocalValidatorFactoryBean();
-		}
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("classpath:messages");
+		messageSource.setDefaultEncoding("UTF-8");
+		return messageSource;
+	}
 
-	
+	@Bean
+	public LocalValidatorFactoryBean validator() {
+		return new LocalValidatorFactoryBean();
+	}
+
 }

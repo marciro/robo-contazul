@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import br.com.contaazul.challengerobot.common.ChallengeRobotMessages;
 import br.com.contaazul.challengerobot.model.RobotPosition;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 
 
@@ -19,12 +20,14 @@ import jakarta.validation.Valid;
  */
 @Validated
 @Component
+@Slf4j
 public class TurnRightRobotCommand implements RobotCommand{
 
 	
 
 	@Override
 	public RobotPosition execute(@Valid RobotPosition currentState) {
+		log.info("Executando comando de virar 90 graus para direita");
 		switch (currentState.getDirection()) {
 		case NORTH_DIRECTION: {
 			currentState.setDirection(EAST_DIRECTION);
@@ -44,6 +47,7 @@ public class TurnRightRobotCommand implements RobotCommand{
 		}
 
 		default:
+			log.error("Erro ao processar alteração na direção: Direção {} inexistente",currentState.getDirection());
 			throw new IllegalArgumentException(ChallengeRobotMessages.UNEXPECTED_VALUE + currentState.getDirection());
 		}
 
