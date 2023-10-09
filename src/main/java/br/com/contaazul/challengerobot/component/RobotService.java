@@ -12,6 +12,7 @@ import br.com.contaazul.challengerobot.model.RobotPosition;
 import br.com.contaazul.challengerobot.model.command.CommandableRobot;
 import br.com.contaazul.challengerobot.model.command.RobotCommand;
 import io.micrometer.common.util.StringUtils;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -20,10 +21,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
+@AllArgsConstructor
 public class RobotService implements CommandableRobot<RobotCommand> {
 
-	@Autowired
-	private RobotPositionValidator validator;
+	private final RobotPositionValidator validator;
 
 	@Override
 	public RobotPosition executeCommand(UUID robotIdentifier, List<RobotCommand> commands) throws RobotException {

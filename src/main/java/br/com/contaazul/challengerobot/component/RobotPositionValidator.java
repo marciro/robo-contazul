@@ -2,7 +2,6 @@ package br.com.contaazul.challengerobot.component;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;

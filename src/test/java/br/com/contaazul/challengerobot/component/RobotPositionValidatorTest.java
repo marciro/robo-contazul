@@ -8,7 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.contaazul.challengerobot.common.ChallengeRobotConstants;
-import br.com.contaazul.challengerobot.component.RobotPositionValidator;
 import br.com.contaazul.challengerobot.model.RobotPosition;
 
 @ExtendWith(MockitoExtension.class)
