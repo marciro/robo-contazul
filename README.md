@@ -47,7 +47,7 @@ Aqui estão as principais classes envolvidas na solução do desafio:
 Para executar o sistema, siga estas etapas:
 
 1. Configure um ambiente de desenvolvimento Java com as dependências necessárias, incluindo Maven.
-2. Executar o comando `mvn clean install no diretório raiz do projeto.
+2. Executar o comando `mvn clean install` no diretório raiz do projeto.
 3. Após a execução comando, será gerado um arquivo challengerobot-0.0.1-SNAPSHOT.jar no diretório target. Para executá-lo utilizar o comando `java -jar challengerobot-0.0.1-SNAPSHOT.jar`
 4. A aplicação estará executando na porta HTTP 8080, ou seja, estará respondendo aos comandos no endereço **http://localhost:8080/rest/mars/**
 
